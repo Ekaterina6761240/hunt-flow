@@ -7,6 +7,10 @@ body {
   font-weight: bolder;
 }
 
+.logo a {
+  color: #8e29cb;
+  text-decoration: none;
+}
 .no_href a {
   color: #222222;
   text-decoration: none;
@@ -40,43 +44,76 @@ body {
   justify-content: space-between;
 }
 .filter {
-  background: #f3f3f3;
-  max-width: 300px;
-  border-radius: 4px;
-}
-.filter P {
-  font-weight: bolder;
-  padding: 8px;
-}
-.filter-p a {
-  color: #222222 !important;
-  font-weight: bolder;
-  padding: 8px;
-  text-decoration: none;
-  border-bottom: 1px dotted #222222 !important;
-}
-.list-group {
   display: flex;
   flex-direction: row;
+  align-items: center;
+
+  justify-content: start;
+  background: #f3f3f3;
+  height: 54px;
+}
+
+.filter_title {
+  font-weight: bolder;
+}
+.filter-new {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-evenly;
-  max-width: 700px;
-  background: #f3f3f3;
-  height: 36px !important;
-  border-radius: 4px;
 }
-.candidates {
+.filter-new a {
+  color: #222222;
+  text-decoration: none;
+}
+.filter-new a:hover {
+  color: #5c5c5c;
+  text-decoration: none;
+  border-bottom: 1px dotted #5c5c5c;
+}
+
+.candidate-list {
   display: flex;
-  flex-direction: row;
-  /* justify-content: space-evenly; */
-  max-width: 700px;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: start;
   background: #f3f3f3;
-  height: 36px !important;
-  border-radius: 4px;
-  min-height: 300px;
+  min-height: 54px;
 }
-.list a:hover {
-  color: #222222 !important;
-  border-bottom: 1px dotted #222222;
+.candidate-list-title {
+  font-weight: bolder;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+
+  align-items: baseline;
+  background: #f3f3f3;
+  min-height: 54px;
+}
+.prof-list {
+  padding-top: 8px;
+}
+.prof-list a {
+  color: #8e29cb;
+  text-decoration: none;
+}
+
+.prof-list a:hover {
+  color: #531879;
+  border-bottom: 1px dotted #531879;
+}
+
+.content-title a {
+  font-weight: bolder;
+  color: #222222;
+  text-decoration: none;
+  border-bottom: 1px dotted #5c5c5c;
+}
+.content-title a:hover {
+  color: #5c5c5c;
+  text-decoration: none;
+  border-bottom: none;
 }
 
 .br {

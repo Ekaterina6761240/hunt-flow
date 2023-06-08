@@ -3,34 +3,19 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import LineHr from '../Elem/LineHr';
+import CandidateLeftBar from './CandidateLeftBar';
+import CandidateRightContent from './CandidateRightContent';
 
-export default function Candidate() {
+export default function Candidate({ candidate, allVacancy }) {
   return (
     <>
-      <Container>
-        <Row className="filter-row ">
-          <Col className="filter ">
-            <p variant="outline-secondary filter-p">Кандидаты</p> <hr />
-            <ul>
-              <li className="no_href-filter-list ">
-                <a href="#">Маркетологи</a>
-              </li>
-              <li className="no_href-filter-list ">
-                <a href="#">Юристы</a>
-              </li>
-              <li className="no_href-filter-list ">
-                <a href="#">Артисты</a>
-              </li>
-              <li className="no_href-filter-list ">
-                <a href="#">Программисты</a>
-              </li>
-            </ul>
-          </Col>
-          <Col className="candidates   ">
-            <p variant="outline-secondary " className="filter-p">
-              <a href="/candidates">Вакансии</a> / добавить кандидата <hr />
-            </p>
-          </Col>
+      <Container className="   " me={2}>
+        <Row className=" ">
+          <CandidateLeftBar />
+
+          <CandidateRightContent candidate={candidate} allVacancy={allVacancy} />
         </Row>
       </Container>
 

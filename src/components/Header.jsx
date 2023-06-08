@@ -19,8 +19,11 @@ export default function Header({ currentUser }) {
             <Col>
               {' '}
               <span className="logo">
-                {' '}
-                {' { '} Hunt Flow {' } '}
+                <a href="/">
+                  {' '}
+                  {' { '}
+                  Hunt Flow {' } '}
+                </a>
               </span>{' '}
               <br />
               <Col>Speed up the recruiting process</Col>
