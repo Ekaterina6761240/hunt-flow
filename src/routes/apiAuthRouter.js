@@ -41,7 +41,7 @@ apiAuthRouter.post('/signup', async (req, res) => {
 
 apiAuthRouter.post('/signin', async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
+
   if (!email && !password) {
     return res.status(400).json({ message: 'не все заполнили' }); // не завершабщая операция
   }
