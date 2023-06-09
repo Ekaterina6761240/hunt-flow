@@ -7,22 +7,34 @@ import AllCandidatesPage from './pages/AllCandidatesPage';
 import OneCandidatePage from './pages/OneCandidatePage';
 import AllCandPage from './pages/AllCandPage';
 
-export default function App({ allCandidates, allProfessions, allStatuses, candidate, allVacancy, vacantions }) {
+export default function App({
+  allCandidates,
+  allProfessions,
+  allStatuses,
+  candidate,
+  allVacancy,
+  vacantions,
+}) {
+  const [candidates, setCandidates] = useState(allCandidates);
   return (
     <>
       <Header currentUser="admin" />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/new-candidate" element={<NewCandidate vacantions={vacantions} />} />
- <Route
-        path="/candidates"
-        element={
-          <AllCandPage
-            allCandidates={allCandidates}
-            allProfessions={allProfessions}
-            allStatuses={allStatuses}
-          />
-       
+        <Route
+          path="/new-candidate"
+          element={<NewCandidate vacantions={vacantions} setCandidates={setCandidates} />}
+        />
+        <Route
+          path="/candidates"
+          element={
+            <AllCandPage
+              allCandidates={allCandidates}
+              allProfessions={allProfessions}
+              allStatuses={allStatuses}
+            />
+          }
+        />
         <Route
           path="/candidates/:id"
           element={<OneCandidatePage candidate={candidate} allVacancy={allVacancy} />}

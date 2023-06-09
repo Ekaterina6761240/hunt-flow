@@ -33,7 +33,7 @@ export default function AddForm({ vacantions, allVacancy }) {
       const response = await axios.post('/api/new-candidate', data);
 
       if (response.status === 200) {
-        window.location = '/';
+        window.location = '/candidates';
       }
     } catch (err) {
       setError(err.response.data.message);

@@ -5,16 +5,22 @@ import Container from 'react-bootstrap/Container';
 import CandList from '../ui/CandList';
 import LeftBar from '../ui/LeftBar';
 import NavBar from '../ui/NavBar';
+import Filter from '../Elem/Filter';
 
 export default function AllCandPage({ allCandidates, allProfessions }) {
   const [candidates, setCandidates] = useState(allCandidates);
   return (
     <Container>
-      <NavBar setCandidates={setCandidates} />
+      <Filter setCandidates={setCandidates} />
+
+      {/* // left bar */}
       <Row className="mt-4">
         <Col md={3} className="mb-4">
           <LeftBar allProfessions={allProfessions} setCandidates={setCandidates} />
         </Col>
+
+        {/* //  карточки */}
+
         <Col md={9} className="mb-4">
           <CandList candidates={candidates} />
         </Col>

@@ -28,7 +28,9 @@ export default function CandItem({ candidate }) {
             <Card.Text>{age}</Card.Text>
             <Card.Text>{phone}</Card.Text>
             <Card.Text>{createDate}</Card.Text>
-            <Button variant="primary">Подробнее</Button>
+            <Button variant="primary" href={`/candidates/${candidate.id}`}>
+              Подробнее
+            </Button>
           </Card.Body>
         </Col>
       </Row>

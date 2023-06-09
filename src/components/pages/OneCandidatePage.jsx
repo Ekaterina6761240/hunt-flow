@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Filter from '../Elem/Filter';
+import NotFilter from '../Elem/NotFilter';
 import Candidate from '../Elem/Candidate';
 
 export default function candidateRouter({ candidate, allVacancy }) {
   return (
     <>
-      <Filter />
+      <NotFilter />
       <Candidate candidate={candidate} allVacancy={allVacancy} />
     </>
   );

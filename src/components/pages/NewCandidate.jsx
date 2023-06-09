@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Filter from '../Elem/Filter';
+import NotFilter from '../Elem/NotFilter';
 import AddForm from '../Elem/AddForm';
 
-export default function NewCandidate({ vacantions, allVacancy }) {
+export default function NewCandidate({ setCandidates, vacantions, allVacancy }) {
   return (
     <>
-      <Filter />
+      <NotFilter />
       <AddForm vacantions={vacantions} allVacancy={allVacancy} />
     </>
   );

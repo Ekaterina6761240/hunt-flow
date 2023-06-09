@@ -6,7 +6,7 @@ import multerMod from '../midlewar/multerMid';
 const apiAddRouter = express.Router();
 
 apiAddRouter.post(
-  '/new-candidate',
+  '/',
   multerMod.fields([
     { name: 'img', maxCount: 1 },
     { name: 'pdf', maxCount: 1 },
