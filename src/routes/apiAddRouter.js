@@ -1,58 +1,50 @@
 import express from 'express';
-import fs from 'fs';
-// import sharp from 'sharp';
-import { Candidate, Profession } from '../../db/models';
+
+import { Candidate } from '../../db/models';
 import multerMod from '../midlewar/multerMid';
 
 const apiAddRouter = express.Router();
 
-apiAddRouter.post('/new-candidate', async (req, res) => {
-  // multerMod.single('pdf')
-  try {
-    const { name, secondname, email, phone, comments, img, experience, age, vacantions } = req.body;
-    // console.log(req.file);
-    // if (!req.file) {
-    //   return res.status(400).send({ message: 'Заполните все поля!' });
-    // }
-    // const fileNamePdf = `${Date.now()}.pdf`;
+apiAddRouter.post(
+  '/new-candidate',
+  multerMod.fields([
+    { name: 'img', maxCount: 1 },
+    { name: 'pdf', maxCount: 1 },
+  ]),
 
-    // await fs.writeFile(`../../public/pdf/${fileNamePdf}`);
+  async (req, res) => {
+    try {
+      console.log('req.file:', req.files);
+      console.log('req.body:', req.body);
 
-    // console.log('=======', req.file.filename);
-    // console.log(req.file);
-    const searchEmail = await Candidate.findOne({ where: { email: req.body.email } });
+      if (!req.files) {
+        return res.status(400).send({ message: 'Заполните все поля!' });
+      }
 
-    if (searchEmail) {
-      return res.status(400).send({ message: 'Такой кандидат уже есть!' });
+      const searchEmail = await Candidate.findOne({ where: { email: req.body.email } });
+
+      if (searchEmail) {
+        return res.status(400).send({ message: 'Такой кандидат уже есть!' });
+      }
+
+      await Candidate.create({
+        name: req.body.name,
+        second_name: req.body.secondname,
+        email: req.body.email,
+        age: req.body.age,
+        phone: req.body.phone,
+        comments: req.body.comments,
+        img: req.files.img[0].filename,
+        pdf: req.files.pdf[0].filename,
+        prof_id: req.body.vacantions,
+        skills: req.body.experience,
+      });
+      res.sendStatus(200);
+    } catch (e) {
+      res.sendStatus(500);
+      // console.log(e);
     }
-
-    await Candidate.create({
-      name,
-      secondname,
-      email,
-      phone,
-      comments,
-      img,
-      // pdf,
-      skills: experience,
-      age,
-      prof_id: vacantions,
-
-      // name: req.body.name,
-      // second_name: req.body.secondname,
-      // email: req.body.email,
-      // age: req.body.age,
-      // phone: req.body.phone,
-      // comments: req.body.comments,
-      // // img: req.body.img,
-      // // pdf: fileNamePdf,
-      // prof_id: req.body.vacantions,
-      // skills: req.body.experience,
-    });
-    res.sendStatus(200);
-  } catch (e) {
-    console.log(e);
-  }
-});
+  },
+);
 
 export default apiAddRouter;
