@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       age: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       img: {
         type: Sequelize.STRING,

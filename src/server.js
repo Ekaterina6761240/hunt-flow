@@ -7,6 +7,8 @@ import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/indexRouter';
 import candidateRouter from './routes/candidateRouter';
 import apiRouter from './routes/apiRouter';
+import addCandidate from './routes/addCandidateRouter';
+import apiAddRouter from './routes/apiAddRouter';
 
 require('dotenv').config();
 
@@ -44,5 +46,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/candidates', candidateRouter);
 app.use('/api', apiRouter);
+app.use('/', addCandidate);
+app.use('/api', apiAddRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
