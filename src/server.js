@@ -43,7 +43,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', addCandidate);
+app.use('/', indexRouter);
+
+app.use('/new-candidate', addCandidate);
 app.use('/candidates', candidateRouter);
 app.use('/api', apiRouter);
 app.use('/api', apiAddRouter);
