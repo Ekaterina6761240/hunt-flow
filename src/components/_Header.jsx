@@ -9,7 +9,6 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import LineHr from './Elem/LineHr';
-import Search from './Elem/Search';
 
 export default function Header({ currentUser }) {
   return (
@@ -30,7 +29,6 @@ export default function Header({ currentUser }) {
               <Col>Speed up the recruiting process</Col>
             </Col>
           </Row>
-
           <Row>
             <Col>
               Привет, {currentUser}

@@ -71,4 +71,14 @@ vacancy.put('/:id', async (req, res) => {
   res.json(candidate);
 });
 
+vacancy.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Candidate.destroy({ where: { id } });
+    res.sendStatus(200);
+  } catch (e) {
+    res.sendStatus(500);
+  }
+});
+
 export default vacancy;

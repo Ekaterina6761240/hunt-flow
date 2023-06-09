@@ -1,5 +1,6 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 export default function CandidateLeftBar() {
   return (
@@ -20,6 +21,17 @@ export default function CandidateLeftBar() {
           {' '}
           <a href="#">Программист</a>{' '}
         </span>
+        <br />
+
+        <span className="candidate-list-title mt-4">
+          Стутас кандидата <hr />
+        </span>
+        <span className="status-list active-status">Направлено приглашение</span>
+        <span className="status-list active-status"> Звонок скрининг </span>
+        <span className="status-list">Интервью</span>
+        <span className="status-list">Передано заказчику</span>
+        <span className="status-list">Выход на работу</span>
+        <span className="status-list">Отказ</span>
         <br />
       </Col>
     </>

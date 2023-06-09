@@ -25,6 +25,16 @@ export default function CandidateRightContent({ candidate, allVacancy }) {
     setСandidate(data);
   };
 
+  const handlerDelete = async (candidateId) => {
+    const response = await fetch(`/candidates/${candidate.id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      window.location = '/';
+    }
+  };
+
   return (
     <>
       <Col className="mt-4 content rounded " md={8}>
@@ -145,9 +155,16 @@ export default function CandidateRightContent({ candidate, allVacancy }) {
           <Button variant="warning" type="submit" className="mb-3 me-4">
             Редактировать
           </Button>
-          {/* <Button variant="danger" type="submit" className="mb-3 me-4">
+          <Button
+            onClick={() => handlerDelete(candidate.id)}
+            variant="danger"
+            type="submit"
+            className="mb-3 me-4"
+          >
+            {' '}
             Удалить
-          </Button> */}
+          </Button>
+
           <Row> </Row>
         </Form>
       </Col>

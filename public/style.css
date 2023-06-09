@@ -94,6 +94,7 @@ body {
 .prof-list {
   padding-top: 8px;
 }
+
 .prof-list a {
   color: #8e29cb;
   text-decoration: none;
@@ -102,6 +103,16 @@ body {
 .prof-list a:hover {
   color: #531879;
   border-bottom: 1px dotted #531879;
+}
+
+.status-list {
+  color: #222222;
+}
+
+.active-status {
+  color: #8e29cb;
+  font-weight: bolder;
+  border-bottom: 1px dotted #8e29cb;
 }
 
 .content-title a {
