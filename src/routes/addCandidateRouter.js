@@ -5,7 +5,8 @@ const addCandidate = express.Router();
 
 addCandidate.get('/', async (req, res) => {
   const vacantions = await Profession.findAll();
-  const initState = { vacantions };
+  const allProfessions = await Profession.findAll();
+  const initState = { vacantions, allProfessions };
   res.render('Layout', initState);
 });
 

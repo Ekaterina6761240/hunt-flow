@@ -10,6 +10,9 @@ export default function CandidateLeftBar() {
         <span className="candidate-list-title mt-4">
           Кандидаты <hr />
         </span>
+
+
+        
         <span className="prof-list">
           <a href="#">Маркетолог</a>{' '}
         </span>

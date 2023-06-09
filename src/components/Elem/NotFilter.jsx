@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import LineHr from '../Elem/LineHr';
+import LineHr from './LineHr';
+
+import axios from 'axios';
+
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 export default function Filter() {
   return (
@@ -16,15 +21,7 @@ export default function Filter() {
           </Col>
           <Col className="filter mt-4 filter-new rounded " md={8}>
             <span className="filter_title">
-              <a href="#">Новое</a>{' '}
-            </span>
-            <span className="filter_title">
-              {' '}
-              <a href="#">Все</a>{' '}
-            </span>
-            <span className="filter_title">
-              {' '}
-              <a href="#">Отказ</a>{' '}
+              <a href="/candidates">Все кандидаты</a>{' '}
             </span>
             <Button variant="outline-secondary" id="button-addon2" className="no_href">
               <a href="/new-candidate">Добавить кандидата</a>

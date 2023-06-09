@@ -5,12 +5,20 @@ import CandItem from './CandItem';
 
 export default function CandList({ candidates }) {
   return (
-    <Row>
-      {candidates?.map((candidate) => (
-        <Col key={candidate.id}>
-          <CandItem candidate={candidate} />
-        </Col>
-      ))}
-    </Row>
+    <>
+      <Col className="mt-4 content rounded " md={8}>
+        <span className=" content-title mt-4">
+          <a href="">Вакансии</a> &nbsp; / &nbsp; все
+          <hr />
+        </span>
+        <Row>
+          {candidates?.map((candidate) => (
+            <Col key={candidate.id}>
+              <CandItem candidate={candidate} />
+            </Col>
+          ))}
+        </Row>
+      </Col>
+    </>
   );
 }

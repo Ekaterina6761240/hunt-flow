@@ -31,7 +31,7 @@ export default function CandidateRightContent({ candidate, allVacancy }) {
     });
 
     if (response.ok) {
-      window.location = '/';
+      window.location = '/candidates';
     }
   };
 

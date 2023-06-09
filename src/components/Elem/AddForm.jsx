@@ -9,8 +9,15 @@ import axios from 'axios';
 import Vacantions from '../ui/Vacantions';
 import Container from 'react-bootstrap/Container';
 import CandidateLeftBar from './CandidateLeftBar';
+import LeftBar from '../ui/LeftBar';
 
-export default function AddForm({ vacantions, allVacancy }) {
+export default function AddForm({
+  vacantions,
+  allVacancy,
+  allCandidates,
+  allProfessions,
+  setCandidates,
+}) {
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
@@ -33,7 +40,7 @@ export default function AddForm({ vacantions, allVacancy }) {
       const response = await axios.post('/api/new-candidate', data);
 
       if (response.status === 200) {
-        window.location = '/';
+        window.location = '/candidates';
       }
     } catch (err) {
       setError(err.response.data.message);
@@ -44,7 +51,8 @@ export default function AddForm({ vacantions, allVacancy }) {
     <>
       <Container className="   " me={2}>
         <Row className=" ">
-          <CandidateLeftBar />
+          <LeftBar allProfessions={allProfessions} setCandidates={setCandidates} />
+
           <Col className="mt-4 content rounded " md={8}>
             <span className=" content-title mt-4">
               <a href="">Вакансии</a> &nbsp; / &nbsp; все
