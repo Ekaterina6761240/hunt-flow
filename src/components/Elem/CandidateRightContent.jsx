@@ -14,9 +14,8 @@ import downloadFile from '../function/download';
 export default function CandidateRightContent({ candidate, allVacancy }) {
   const [oneCandidate, setСandidate] = useState([]);
 
-  const handlerDownload = async (candidateId) => {
-    console.log('-->', candidate.pdf);
-    downloadFile(`/pdf/${candidate.pdf}.pdf`, `${candidate.name}${candidate.second_name}.pdf`);
+  const handlerDownload = async () => {
+    downloadFile(`/pdf/${candidate.pdf}`, `${candidate.name}${candidate.second_name}.pdf`);
   };
 
   const handlerEdit = async (e) => {
@@ -26,8 +25,7 @@ export default function CandidateRightContent({ candidate, allVacancy }) {
       `/candidates/${candidate.id}`,
       Object.fromEntries(new FormData(e.target)),
     );
-    console.log('data-->', data);
-    console.log('Profession data-->', data.Profession.profession);
+
     candidate.Profession.profession = data.Profession.profession;
     setСandidate(data);
   };
@@ -144,13 +142,8 @@ export default function CandidateRightContent({ candidate, allVacancy }) {
               aria-describedby="basic-addon2"
               name="pdf"
               defaultValue={candidate.pdf}
-              type="file"
             />
-            <Button
-              variant="outline-secondary"
-              onClick={() => handlerDownload(candidate.id)}
-              id="button-addon2"
-            >
+            <Button variant="outline-secondary" onClick={handlerDownload} id="button-addon2">
               Скачать в pdf
             </Button>
           </InputGroup>
