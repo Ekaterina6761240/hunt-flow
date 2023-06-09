@@ -1,16 +1,25 @@
 import express from 'express';
-import { Candidate, Profession } from '../../db/models';
+import { Candidate, Profession, Status } from '../../db/models';
 
-const vacancy = express.Router();
+const candidateRouter = express.Router();
 
-vacancy.get('/', (req, res) => {
-  const initState = {
-    title: '{ Hunt Flow } | Все вакансии',
-  };
-  res.render('Layout', initState);
+ 
+
+// Ручка для отображения всех кандидатов
+candidateRouter.get('/', async (req, res) => {
+  try {
+    const allCandidates = await Candidate.findAll({ include: Profession });
+    const allProfessions = await Profession.findAll();
+    const allStatuses = await Status.findAll();
+    const initState = { allCandidates, allProfessions, allStatuses };
+    res.render('Layout', initState);
+  } catch (error) {
+    console.error('Произошла ошибка при получении данных:', error);
+    res.status(500).send('Произошла ошибка при получении данных');
+  }
 });
 
-vacancy.get('/:id', async (req, res) => {
+candidateRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
   const oneCandidate = await Candidate.findByPk(id, {
     include: Profession,
@@ -26,7 +35,7 @@ vacancy.get('/:id', async (req, res) => {
   res.render('Layout', initState);
 });
 
-vacancy.put('/:id', async (req, res) => {
+candidateRouter.put('/:id', async (req, res) => {
   const {
     name,
     second_name,
@@ -71,7 +80,7 @@ vacancy.put('/:id', async (req, res) => {
   res.json(candidate);
 });
 
-vacancy.delete('/:id', async (req, res) => {
+candidateRouter.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     await Candidate.destroy({ where: { id } });
@@ -81,4 +90,4 @@ vacancy.delete('/:id', async (req, res) => {
   }
 });
 
-export default vacancy;
+export default candidateRouter;
