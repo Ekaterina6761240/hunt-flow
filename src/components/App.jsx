@@ -6,13 +6,13 @@ import NewCandidate from './pages/NewCandidate';
 import AllCandidatesPage from './pages/AllCandidatesPage';
 import OneCandidatePage from './pages/OneCandidatePage';
 
-export default function App({ candidate, allVacancy }) {
+export default function App({ candidate, allVacancy, vacantions }) {
   return (
     <>
       <Header currentUser="admin" />
       <Routes>
-    <Route path="/new-candidate" element={<NewCandidate vacantions={vacantions} />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/new-candidate" element={<NewCandidate vacantions={vacantions} />} />
         <Route path="/candidates" element={<AllCandidatesPage />} />
         <Route
           path="/candidates/:id"

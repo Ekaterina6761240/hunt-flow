@@ -27,7 +27,7 @@ export default function Filter() {
               <a href="#">Отказ</a>{' '}
             </span>
             <Button variant="outline-secondary" id="button-addon2" className="no_href">
-              <a href="/api/new-candidate">Добавить кандидата</a>
+              <a href="/new-candidate">Добавить кандидата</a>
             </Button>{' '}
           </Col>
         </Row>
