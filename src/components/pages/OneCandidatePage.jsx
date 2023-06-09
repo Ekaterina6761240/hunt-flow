@@ -3,15 +3,12 @@ import React from 'react';
 import NotFilter from '../Elem/NotFilter';
 import Candidate from '../Elem/Candidate';
 
-export default function candidateRouter({ candidate, allVacancy }) {
+export default function candidateRouter({ candidate, allVacancy, allProfessions }) {
+  console.log('--->', allProfessions);
   return (
     <>
       <NotFilter />
-      <Candidate candidate={candidate} allVacancy={allVacancy} />
+      <Candidate candidate={candidate} allVacancy={allVacancy} allProfessions={allProfessions} />
     </>
   );
 }
-
-//
-//       <LineHr />
-//       <Candidate />

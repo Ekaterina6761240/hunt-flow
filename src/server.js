@@ -12,6 +12,9 @@ import apiCandRouter from './routes/apiCandRouter';
 import addCandidate from './routes/addCandidateRouter';
 import apiAddRouter from './routes/apiAddRouter';
 
+import authRouter from './routes/authRouter';
+import apiAuthRouter from './routes/apiAuthRouter';
+
 require('dotenv').config();
 
 const PORT = process.env.SERVER_PORT || 3000;
@@ -42,14 +45,17 @@ app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
   res.locals.path = req.originalUrl;
+  res.locals.user = req.session.user;
   next();
 });
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
+app.use('/api/auth', apiAuthRouter);
 
 app.use('/new-candidate', addCandidate); // Катя
 app.use('/api/new-candidate', apiAddRouter); // Катя
-// app.use('/api', apiRouter);
+
 app.use('/candidates', candidateRouter); // Евгений
 app.use('/api/v1/candidates', apiCandRouter); // Евгений
 

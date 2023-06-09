@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { Candidate } from '../../db/models';
-import multerMod from '../midlewar/multerMid';
+import multerMod from '../middlewares/userMiddleware';
 
 const apiAddRouter = express.Router();
 

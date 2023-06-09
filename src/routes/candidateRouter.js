@@ -3,8 +3,6 @@ import { Candidate, Profession, Status } from '../../db/models';
 
 const candidateRouter = express.Router();
 
- 
-
 // Ручка для отображения всех кандидатов
 candidateRouter.get('/', async (req, res) => {
   try {
@@ -21,6 +19,7 @@ candidateRouter.get('/', async (req, res) => {
 
 candidateRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
+  const allProfessions = await Profession.findAll();
   const oneCandidate = await Candidate.findByPk(id, {
     include: Profession,
   });
@@ -31,6 +30,7 @@ candidateRouter.get('/:id', async (req, res) => {
 
   initState.candidate = oneCandidate;
   initState.allVacancy = allVacancy;
+  initState.allProfessions = allProfessions;
 
   res.render('Layout', initState);
 });

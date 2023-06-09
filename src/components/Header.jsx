@@ -10,8 +10,14 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import LineHr from './Elem/LineHr';
 import Search from './Elem/Search';
+import Icon from './Elem/Icon';
 
 export default function Header({ currentUser }) {
+  const logoutHandler = async (e) => {
+    e.preventDefault();
+    await axios('/api/auth/logout').catch((err) => console.log(err.response.data));
+    window.location = '/';
+  };
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -33,15 +39,37 @@ export default function Header({ currentUser }) {
 
           <Row>
             <Col>
-              Привет, {currentUser}
+              {currentUser ? (
+                <>
+                  &nbsp;&nbsp;
+                  <span>
+                    Привет, &nbsp;
+                    {currentUser.name}
+                  </span>
+                  &nbsp;&nbsp; <Icon />
+                </>
+              ) : (
+                <></>
+              )}
               <Col>
                 {' '}
-                <Button variant="outline-secondary" id="button-addon2" className="no_href">
-                  <a href="/auth/login">Войти</a>
-                </Button>{' '}
-                <Button variant="outline-secondary" id="button-addon2" className="no_href">
-                  <a href="/auth/signup">Регистрация</a>
-                </Button>{' '}
+                {currentUser ? (
+                  <>
+                    <Button variant="outline-secondary" id="button-addon2" className="no_href">
+                      <a onClick={logoutHandler}>Выйти</a>
+                    </Button>{' '}
+                  </>
+                ) : (
+                  <>
+                    {' '}
+                    <Button variant="outline-secondary" id="button-addon2" className="no_href">
+                      <a href="/auth/signin">Войти</a>
+                    </Button>{' '}
+                    <Button variant="outline-secondary" id="button-addon2" className="no_href">
+                      <a href="/auth/signup">Регистрация</a>
+                    </Button>{' '}
+                  </>
+                )}
               </Col>
             </Col>
           </Row>
