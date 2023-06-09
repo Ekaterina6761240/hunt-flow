@@ -1,0 +1,153 @@
+body {
+  font-family: 'trebuchet ms', verdana, helvetica, arial, sans-serif;
+}
+.logo {
+  color: #8e29cb;
+  font-size: 33px;
+  font-weight: bolder;
+}
+
+.logo a {
+  color: #8e29cb;
+  text-decoration: none;
+}
+.no_href a {
+  color: #222222;
+  text-decoration: none;
+}
+.no_href a:hover {
+  color: #ececec !important;
+  /* border-bottom: 1px dotted #ececec; */
+}
+.no_href-filter-list {
+  padding: 8px 0px;
+  list-style: none;
+}
+.no_href-filter-list a {
+  color: #6967f5;
+  text-decoration: none;
+}
+.no_href-filter-list a:hover {
+  color: #3e3d70 !important;
+  border-bottom: 1px dotted #3e3d70 !important;
+}
+.filter-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 36px !important;
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  justify-content: start;
+  background: #f3f3f3;
+  height: 54px;
+}
+
+.filter_title {
+  font-weight: bolder;
+}
+.filter-new {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.filter-new a {
+  color: #222222;
+  text-decoration: none;
+}
+.filter-new a:hover {
+  color: #5c5c5c;
+  text-decoration: none;
+  border-bottom: 1px dotted #5c5c5c;
+}
+
+.candidate-list {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: start;
+  background: #f3f3f3;
+  min-height: 54px;
+}
+.candidate-list-title {
+  font-weight: bolder;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+
+  align-items: baseline;
+  background: #f3f3f3;
+  min-height: 54px;
+}
+.prof-list {
+  padding-top: 8px;
+}
+
+.prof-list a {
+  color: #8e29cb;
+  text-decoration: none;
+}
+
+.prof-list a:hover {
+  color: #531879;
+  border-bottom: 1px dotted #531879;
+}
+
+.status-list {
+  color: #222222;
+}
+
+.active-status {
+  color: #8e29cb;
+  font-weight: bolder;
+  border-bottom: 1px dotted #8e29cb;
+}
+
+.content-title a {
+  font-weight: bolder;
+  color: #222222;
+  text-decoration: none;
+  border-bottom: 1px dotted #5c5c5c;
+}
+.content-title a:hover {
+  color: #5c5c5c;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.br {
+  border: 1px solid red;
+}
+.bg {
+  border: 1px solid green;
+}
+
+.index-img {
+  margin: 0 auto;
+  background: url('/i/index-img.jpg');
+  min-height: 500px;
+}
+.index-img P {
+  font-size: 34px;
+  text-align: center;
+  font-weight: 500;
+  color: #e2e2e2;
+  line-height: 1.51em;
+  padding: 150px 30px;
+}
+
+.footer {
+  min-height: 150px;
+}
