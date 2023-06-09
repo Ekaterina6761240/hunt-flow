@@ -66,7 +66,7 @@ candidateRouter.put('/:id', async (req, res) => {
     },
   });
   const prof_id = profId.id;
-  console.log('-->const prof_id', prof_id);
+
   await Candidate.update(
     { name, email, second_name, age, img, pdf, comments, phone, skills, prof_id },
     { where: { id: req.params.id } },
