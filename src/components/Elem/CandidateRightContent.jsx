@@ -9,8 +9,15 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
+import downloadFile from '../function/download';
+
 export default function CandidateRightContent({ candidate, allVacancy }) {
   const [oneCandidate, setСandidate] = useState([]);
+
+  const handlerDownload = async (candidateId) => {
+    console.log('-->', candidate.pdf);
+    downloadFile(`/pdf/${candidate.pdf}.pdf`, `${candidate.name}${candidate.second_name}.pdf`);
+  };
 
   const handlerEdit = async (e) => {
     e.preventDefault();
@@ -137,9 +144,14 @@ export default function CandidateRightContent({ candidate, allVacancy }) {
               aria-describedby="basic-addon2"
               name="pdf"
               defaultValue={candidate.pdf}
+              type="file"
             />
-            <Button variant="outline-secondary" id="button-addon2">
-              Выбрать файл
+            <Button
+              variant="outline-secondary"
+              onClick={() => handlerDownload(candidate.id)}
+              id="button-addon2"
+            >
+              Скачать в pdf
             </Button>
           </InputGroup>
 

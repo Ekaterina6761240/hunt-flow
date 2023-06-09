@@ -17,7 +17,7 @@ export default function CandItem({ candidate }) {
     <Card className="mb-3" style={{ width: '26rem' }}>
       <Row>
         <Col xs={4}>
-          <Card.Img src={img} />
+          <Card.Img src={`/img/${img}`} />
         </Col>
         <Col xs={8}>
           <Card.Body>
