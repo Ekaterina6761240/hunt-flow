@@ -1,12 +1,24 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Header from './Header';
+import HomePage from './pages/HomePage';
 import NewCandidate from './pages/NewCandidate';
+import AllCandidatesPage from './pages/AllCandidatesPage';
+import OneCandidatePage from './pages/OneCandidatePage';
 
-export default function App({ vacantions }) {
+export default function App({ candidate, allVacancy }) {
   return (
-    <Routes>
-      <Route path="/" element={<>Привет</>} />
-      <Route path="/new-candidate" element={<NewCandidate vacantions={vacantions} />} />
-    </Routes>
+    <>
+      <Header currentUser="admin" />
+      <Routes>
+    <Route path="/new-candidate" element={<NewCandidate vacantions={vacantions} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/candidates" element={<AllCandidatesPage />} />
+        <Route
+          path="/candidates/:id"
+          element={<OneCandidatePage candidate={candidate} allVacancy={allVacancy} />}
+        />
+      </Routes>
+    </>
   );
 }

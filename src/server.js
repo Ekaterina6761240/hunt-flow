@@ -5,6 +5,7 @@ import store from 'session-file-store';
 import path from 'path';
 import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/indexRouter';
+import candidateRouter from './routes/candidateRouter';
 import apiRouter from './routes/apiRouter';
 import addCandidate from './routes/addCandidateRouter';
 import apiAddRouter from './routes/apiAddRouter';
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
+app.use('/candidates', candidateRouter);
 app.use('/api', apiRouter);
 app.use('/', addCandidate);
 app.use('/api', apiAddRouter);

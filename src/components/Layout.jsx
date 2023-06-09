@@ -23,7 +23,8 @@ export default function Layout({ initState }) {
         />
         <script defer src="/app.js" />
         <script defer src="/vendor.js" />
-        <title>Document</title>
+        <link rel="stylesheet" href="/style.css" />
+        <title>{initState.title}</title>
       </head>
       <body>
         <div id="root">
