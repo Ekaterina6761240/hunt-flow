@@ -14,6 +14,7 @@ import apiAddRouter from './routes/apiAddRouter';
 
 import authRouter from './routes/authRouter';
 import apiAuthRouter from './routes/apiAuthRouter';
+import { authCheckRender, userInsession } from './middlewares/userMiddleware';
 
 require('dotenv').config();
 
@@ -49,14 +50,16 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(userInsession);
+
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/api/auth', apiAuthRouter);
 
-app.use('/new-candidate', addCandidate); // Катя
-app.use('/api/new-candidate', apiAddRouter); // Катя
+app.use('/new-candidate', authCheckRender, addCandidate); // Катя
+app.use('/api/new-candidate', authCheckRender, apiAddRouter); // Катя
 
-app.use('/candidates', candidateRouter); // Евгений
-app.use('/api/v1/candidates', apiCandRouter); // Евгений
+app.use('/candidates', authCheckRender, candidateRouter); // Евгений
+app.use('/api/v1/candidates', authCheckRender, apiCandRouter); // Евгений
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
