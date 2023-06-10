@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
-export default function CandidateLeftBar({ allStatus }) {
+export default function CandidateLeftBar({ allStatus, currentStatus }) {
+  useEffect(() => {}, [currentStatus]);
   return (
     <>
       {' '}
@@ -13,11 +13,16 @@ export default function CandidateLeftBar({ allStatus }) {
         {/*  */}
 
         {allStatus?.map((status) => (
-          <span key={status.id} className="status-list ">
+          <span
+            key={status.id}
+            className={
+              currentStatus === status.status ? 'status-list active-status' : 'status-list '
+            }
+          >
             {status.status}
           </span>
         ))}
-
+        {/* active-status */}
         <br />
       </Col>
     </>

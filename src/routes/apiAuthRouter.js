@@ -35,7 +35,7 @@ apiAuthRouter.post('/signup', async (req, res) => {
     name: newUser.name,
     email: newUser.email,
   };
-  console.log('session-> ', req.session.user);
+
   res.sendStatus(200);
 });
 
@@ -48,9 +48,10 @@ apiAuthRouter.post('/signin', async (req, res) => {
   const currentUser = await User.findOne({
     where: { email },
   });
-  if (!currentUser || (await bcrypt.compare(currentUser.password, password))) {
-    return res.status(401).json({ message: 'нет такого email' });
+  if (!currentUser || !(await bcrypt.compare(password, currentUser.password))) {
+    return res.status(401).json({ message: 'нет такого email  ' });
   }
+
   req.session.user = {
     id: currentUser.id,
     name: currentUser.name,
@@ -58,6 +59,8 @@ apiAuthRouter.post('/signin', async (req, res) => {
   };
   res.sendStatus(200);
 });
+
+//выход
 apiAuthRouter.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('user_sid');
