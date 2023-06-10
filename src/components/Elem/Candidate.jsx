@@ -13,15 +13,21 @@ import LeftBar from '../ui/LeftBar';
 export default function Candidate({ candidate, allVacancy, allCandidates, allStatus }) {
   const [candidates, setCandidates] = useState(allCandidates);
 
+  const [currentStatus, setCurrentStatus] = useState(candidate.Status.status);
+  console.log('currentStatus-->', currentStatus);
+  const [statuses, setStatuses] = useState(allStatus);
+
   return (
     <>
       <Container className="   " me={2}>
         <Row className=" ">
-          <CandidateLeftBar allStatus={allStatus} />
+          <CandidateLeftBar allStatus={statuses} currentStatus={currentStatus} />
+
           <CandidateRightContent
-            allStatus={allStatus}
+            allStatus={statuses}
             candidate={candidate}
             allVacancy={allVacancy}
+            setCurrentStatus={setCurrentStatus}
           />
         </Row>
       </Container>

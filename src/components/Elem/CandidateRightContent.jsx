@@ -11,28 +11,42 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 import downloadFile from '../function/download';
 
-export default function CandidateRightContent({ allStatus, candidate, allVacancy }) {
-  const [oneCandidate, setСandidate] = useState([]);
+export default function CandidateRightContent({
+  allStatus,
+  candidate,
+  allVacancy,
+  setCurrentStatus,
+}) {
+  const [oneCandidate, setСandidate] = useState(candidate);
 
   const handlerDownload = async () => {
-    downloadFile(`/pdf/${candidate.pdf}`, `${candidate.name}${candidate.second_name}.pdf`);
+    downloadFile(`/pdf/${oneCandidate.pdf}`, `${oneCandidate.name}${oneCandidate.second_name}.pdf`);
   };
 
   const handlerEdit = async (e) => {
     e.preventDefault();
 
     const { data } = await axios.put(
-      `/candidates/${candidate.id}`,
+      `/candidates/${oneCandidate.id}`,
       Object.fromEntries(new FormData(e.target)),
     );
 
-    candidate.Profession.profession = data.Profession.profession;
-    candidate.Status.status = data.Status.status;
-    setСandidate(data);
+    // candidate.Profession.profession = data.Profession.profession;
+    // candidate.Status.status = data.Status.status;
+
+    setСandidate((prevCandidate) => {
+      return {
+        ...prevCandidate,
+        Profession: { ...prevCandidate.Profession, profession: data?.Profession?.profession },
+        Status: { ...prevCandidate.Status, status: data?.Status?.status },
+      };
+    });
+    console.log('oneCandidate-->', oneCandidate.Status.status);
+    setCurrentStatus(oneCandidate.Status.status);
   };
 
   const handlerDelete = async (candidateId) => {
-    const response = await fetch(`/candidates/${candidate.id}`, {
+    const response = await fetch(`/candidates/${oneCandidate.id}`, {
       method: 'DELETE',
     });
 
@@ -53,14 +67,18 @@ export default function CandidateRightContent({ allStatus, candidate, allVacancy
             <Col>
               <Form.Group className="mb-3">
                 <Form.Label>Имя</Form.Label>
-                <Form.Control type="text" name="name" defaultValue={candidate.name} />
+                <Form.Control type="text" name="name" defaultValue={oneCandidate.name} />
               </Form.Group>
             </Col>
 
             <Col>
               <Form.Group className="mb-3">
                 <Form.Label>Фамилия</Form.Label>
-                <Form.Control type="text" name="second_name" defaultValue={candidate.second_name} />
+                <Form.Control
+                  type="text"
+                  name="second_name"
+                  defaultValue={oneCandidate.second_name}
+                />
               </Form.Group>
             </Col>
           </Row>
@@ -69,14 +87,14 @@ export default function CandidateRightContent({ allStatus, candidate, allVacancy
             <Col>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" name="email" defaultValue={candidate.email} />
+                <Form.Control type="email" name="email" defaultValue={oneCandidate.email} />
               </Form.Group>
             </Col>
 
             <Col>
               <Form.Group className="mb-3">
                 <Form.Label>Телефон</Form.Label>
-                <Form.Control type="text" name="phone" defaultValue={candidate.phone} />
+                <Form.Control type="text" name="phone" defaultValue={oneCandidate.phone} />
               </Form.Group>
             </Col>
           </Row>
@@ -85,18 +103,18 @@ export default function CandidateRightContent({ allStatus, candidate, allVacancy
             <Col>
               <Form.Group className="mb-3">
                 <Form.Label>Возраст</Form.Label>
-                <Form.Control type="text" name="age" defaultValue={candidate.age} />
+                <Form.Control type="text" name="age" defaultValue={oneCandidate.age} />
               </Form.Group>
               <FloatingLabel
                 className="mb-3"
                 controlId="floatingTextarea2"
                 label="Оставить комментарий"
-                defaultValue={candidate.comments}
+                defaultValue={oneCandidate.comments}
               >
                 <Form.Control
                   name="comments"
                   as="textarea"
-                  defaultValue={candidate.comments}
+                  defaultValue={oneCandidate.comments}
                   style={{ height: '70px' }}
                 />
               </FloatingLabel>
@@ -108,7 +126,7 @@ export default function CandidateRightContent({ allStatus, candidate, allVacancy
                 <Form.Control
                   type="text"
                   name="professionAdd"
-                  defaultValue={candidate.Profession.profession}
+                  defaultValue={oneCandidate.Profession.profession}
                 />
               </Form.Group>
               <Form.Label>Изменить вакансию</Form.Label>
@@ -128,7 +146,11 @@ export default function CandidateRightContent({ allStatus, candidate, allVacancy
             <Col>
               <Form.Group className="mb-3">
                 <Form.Label>Статус кандидиата</Form.Label>
-                <Form.Control type="text" name="statusNow" defaultValue={candidate.Status.status} />
+                <Form.Control
+                  type="text"
+                  name="statusNow"
+                  defaultValue={oneCandidate.Status.status}
+                />
               </Form.Group>
               <Form.Label>Изменить статус</Form.Label>
               <Form.Select aria-label="Default select example" className="mb-3" name="statusChange">
@@ -148,7 +170,7 @@ export default function CandidateRightContent({ allStatus, candidate, allVacancy
               aria-label="Добавить фото профиля"
               aria-describedby="basic-addon2"
               name="img"
-              defaultValue={candidate.img}
+              defaultValue={oneCandidate.img}
             />
             <Button variant="outline-secondary" id="button-addon2">
               Выбрать фаил
@@ -161,7 +183,7 @@ export default function CandidateRightContent({ allStatus, candidate, allVacancy
               aria-label="Добавить резюме"
               aria-describedby="basic-addon2"
               name="pdf"
-              defaultValue={candidate.pdf}
+              defaultValue={oneCandidate.pdf}
             />
             <Button variant="outline-secondary" onClick={handlerDownload} id="button-addon2">
               Скачать в pdf
@@ -172,7 +194,7 @@ export default function CandidateRightContent({ allStatus, candidate, allVacancy
             <Form.Control
               as="textarea"
               name="skills"
-              defaultValue={candidate.skills}
+              defaultValue={oneCandidate.skills}
               style={{ height: '100px' }}
             />
           </FloatingLabel>
@@ -181,7 +203,7 @@ export default function CandidateRightContent({ allStatus, candidate, allVacancy
             Редактировать
           </Button>
           <Button
-            onClick={() => handlerDelete(candidate.id)}
+            onClick={() => handlerDelete(oneCandidate.id)}
             variant="danger"
             type="submit"
             className="mb-3 me-4"
