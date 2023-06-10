@@ -21,9 +21,11 @@ candidateRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
   const allProfessions = await Profession.findAll();
   const oneCandidate = await Candidate.findByPk(id, {
-    include: Profession,
+    include: [Profession, Status],
   });
   const allVacancy = await Profession.findAll();
+  const allStatus = await Status.findAll();
+
   const initState = {
     title: `{ Hunt Flow } | - Редактировать ${oneCandidate.name} ${oneCandidate.second_name}  `,
   };
@@ -31,33 +33,27 @@ candidateRouter.get('/:id', async (req, res) => {
   initState.candidate = oneCandidate;
   initState.allVacancy = allVacancy;
   initState.allProfessions = allProfessions;
+  initState.allStatus = allStatus;
 
   res.render('Layout', initState);
 });
 
 candidateRouter.put('/:id', async (req, res) => {
-  const {
-    name,
-    second_name,
-    email,
-    phone,
-    age,
-    skills,
-    professionAdd,
-    profession,
-    img,
-    pdf,
-    comments,
-  } = req.body;
+  const { name, second_name, email, phone, age, skills, img, pdf, comments } = req.body;
 
-  console.log('-->', req.body);
+ 
 
   const { id } = req.params;
 
   let professionFromForm = req.body.professionAdd;
+  let statusFromForm = req.body.statusNow;
 
   if (req.body.profession) {
     professionFromForm = req.body.profession;
+  }
+
+  if (req.body.statusChange) {
+    statusFromForm = req.body.statusChange;
   }
 
   const profId = await Profession.findOne({
@@ -67,15 +63,23 @@ candidateRouter.put('/:id', async (req, res) => {
   });
   const prof_id = profId.id;
 
+  const statusId = await Status.findOne({
+    where: {
+      status: statusFromForm,
+    },
+  });
+
+  const status_id = statusId.id;
+
   await Candidate.update(
-    { name, email, second_name, age, img, pdf, comments, phone, skills, prof_id },
+    { name, email, second_name, age, img, pdf, comments, phone, skills, prof_id, status_id },
     { where: { id: req.params.id } },
   );
 
   const candidate = await Candidate.findByPk(id, {
-    include: Profession,
+    include: [Profession, Status],
   });
-  console.log('candidate-->', candidate);
+
   // отправляем candidatA
   res.json(candidate);
 });
