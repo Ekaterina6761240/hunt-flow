@@ -12,7 +12,7 @@ import SignUp from './pages/SignUp';
 export default function App({
   allCandidates,
   allProfessions,
-  allStatuses,
+  allStatus,
   candidate,
   allVacancy,
   vacantions,
@@ -39,13 +39,7 @@ export default function App({
         />
         <Route
           path="/candidates"
-          element={
-            <AllCandPage
-              allCandidates={allCandidates}
-              allProfessions={allProfessions}
-              allStatuses={allStatuses}
-            />
-          }
+          element={<AllCandPage allCandidates={allCandidates} allProfessions={allProfessions} />}
         />
         <Route
           path="/candidates/:id"
@@ -53,6 +47,7 @@ export default function App({
             <OneCandidatePage
               candidate={candidate}
               allVacancy={allVacancy}
+              allStatus={allStatus}
               allCandidates={allCandidates}
               allProfessions={allProfessions}
             />

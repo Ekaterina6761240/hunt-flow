@@ -11,7 +11,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 import downloadFile from '../function/download';
 
-export default function CandidateRightContent({ candidate, allVacancy }) {
+export default function CandidateRightContent({ allStatus, candidate, allVacancy }) {
   const [oneCandidate, setСandidate] = useState([]);
 
   const handlerDownload = async () => {
@@ -27,6 +27,7 @@ export default function CandidateRightContent({ candidate, allVacancy }) {
     );
 
     candidate.Profession.profession = data.Profession.profession;
+    candidate.Status.status = data.Status.status;
     setСandidate(data);
   };
 
@@ -116,6 +117,25 @@ export default function CandidateRightContent({ candidate, allVacancy }) {
                 {allVacancy.map((el) => (
                   <option defaultValue={el.id} key={el.id}>
                     {el.profession}
+                  </option>
+                ))}
+              </Form.Select>
+            </Col>
+          </Row>
+
+          {/* // статус и его изменение */}
+          <Row>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Статус кандидиата</Form.Label>
+                <Form.Control type="text" name="statusNow" defaultValue={candidate.Status.status} />
+              </Form.Group>
+              <Form.Label>Изменить статус</Form.Label>
+              <Form.Select aria-label="Default select example" className="mb-3" name="statusChange">
+                <option>{undefined}</option>
+                {allStatus.map((el) => (
+                  <option defaultValue={el.id} key={el.id}>
+                    {el.status}
                   </option>
                 ))}
               </Form.Select>

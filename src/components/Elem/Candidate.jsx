@@ -10,16 +10,19 @@ import CandidateLeftBar from './CandidateLeftBar';
 import CandidateRightContent from './CandidateRightContent';
 import LeftBar from '../ui/LeftBar';
 
-export default function Candidate({ candidate, allVacancy, allCandidates, allProfessions }) {
+export default function Candidate({ candidate, allVacancy, allCandidates, allStatus }) {
   const [candidates, setCandidates] = useState(allCandidates);
 
   return (
     <>
       <Container className="   " me={2}>
         <Row className=" ">
-          {/* <CandidateLeftBar /> */}
-          <LeftBar allProfessions={allProfessions} setCandidates={setCandidates} />
-          <CandidateRightContent candidate={candidate} allVacancy={allVacancy} />
+          <CandidateLeftBar allStatus={allStatus} />
+          <CandidateRightContent
+            allStatus={allStatus}
+            candidate={candidate}
+            allVacancy={allVacancy}
+          />
         </Row>
       </Container>
 
